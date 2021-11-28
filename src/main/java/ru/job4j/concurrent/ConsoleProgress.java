@@ -6,10 +6,10 @@ public class ConsoleProgress implements Runnable {
 
     @Override
     public void run() {
+        String[] process = {"\\", "|", "/"};
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Thread.sleep(500);
-                String[] process = {"\\", "|", "/"};
                 index = index == 3 ? 0 : index;
                 System.out.print("\r load: " + process[index++]);
             } catch (InterruptedException e) {
