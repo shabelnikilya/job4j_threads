@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class UserCache {
+
     private final ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
     private final AtomicInteger id = new AtomicInteger();
 
