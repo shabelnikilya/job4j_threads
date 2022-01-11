@@ -10,14 +10,12 @@ public final class SaveFile {
         this.file = file;
     }
 
-    public void saveContent(String content) {
-        synchronized (file) {
-            try (BufferedOutputStream out = new BufferedOutputStream(
+    public synchronized void saveContent(String content) {
+        try (BufferedOutputStream out = new BufferedOutputStream(
                     new FileOutputStream(file))) {
-                out.write(content.getBytes(StandardCharsets.UTF_8));
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
+            out.write(content.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException io) {
+            io.printStackTrace();
         }
     }
 }

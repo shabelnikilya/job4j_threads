@@ -10,9 +10,8 @@ public final class ParseFile {
         this.file = file;
     }
 
-    public String getContent(Predicate<Character> predicate) {
+    public synchronized String getContent(Predicate<Character> predicate) {
         StringBuilder output = new StringBuilder();
-        synchronized (file) {
             try (BufferedInputStream in = new BufferedInputStream(
                     new FileInputStream(file))) {
                 int data;
@@ -24,7 +23,6 @@ public final class ParseFile {
             } catch (IOException io) {
                 io.printStackTrace();
             }
-            return output.toString();
-        }
+        return output.toString();
     }
 }
