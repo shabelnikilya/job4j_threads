@@ -16,32 +16,25 @@ public class UserStore {
     }
 
     public synchronized boolean add(User user) {
-        boolean resultAdd = !users.containsKey(user.getId());
-        users.put(user.getId(), user);
-        return resultAdd;
+        return users.putIfAbsent(user.getId(), user) == null;
     }
 
     public synchronized boolean update(User user) {
-        if (!users.containsKey(user.getId())) {
-            throw new IllegalArgumentException("This user is missing. unable to update amount");
-        }
-        users.put(user.getId(), user);
-        return users.get(user.getId()).getAmount() == user.getAmount();
+        return users.replace(user.getId(), user) != null;
     }
 
     public synchronized boolean delete(User user) {
-        users.remove(user.getId());
-        return !users.containsKey(user.getId());
+        return users.remove(user.getId(), user);
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
         User fromUser = users.get(fromId);
         User toUser = users.get(toId);
-        if (fromUser.getAmount() < amount) {
-            throw new IllegalArgumentException("Insufficient funds, enter a different amount");
+        if (fromUser == null || toUser == null || fromUser.getAmount() < amount) {
+            throw new IllegalArgumentException("Users are not found or there are not enough funds");
         }
         fromUser.setAmount(fromUser.getAmount() - amount);
         toUser.setAmount(toUser.getAmount() + amount);
-        return update(fromUser) && update(toUser);
+        return true;
     }
 }
