@@ -14,39 +14,18 @@ public class CountBarrier {
     }
 
     public synchronized void count() {
-        for (int i = 0; i <= total; i++) {
-            count++;
-        }
+        count++;
         notifyAll();
     }
 
     public synchronized void await() {
-        while (count >= total) {
-            System.out.println("Нить выполняет работу");
-        }
+        while (count < total) {
             try {
                 wait();
             } catch (InterruptedException i) {
                 Thread.currentThread().interrupt();
             }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        CountBarrier count = new CountBarrier(5);
-        Thread first = new Thread(
-                () -> {
-                    count.await();
-                    System.out.println("Блокировка снята");
-                }
-        );
-        Thread second = new Thread(
-                () -> {
-                    System.out.println("Начато увеличение счетчика...");
-                    count.count();
-                    System.out.println("Счетчик увеличек.");
-                }
-        );
-        first.start();
-        second.start();
+        }
+        System.out.println("Нить выполняет работу");
     }
 }
