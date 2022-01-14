@@ -14,7 +14,7 @@ public class CountBarrier {
     }
 
     public synchronized void count() {
-        for (int i = 0 ; i <= total; i++) {
+        for (int i = 0; i <= total; i++) {
             count++;
         }
         notifyAll();
