@@ -32,7 +32,7 @@ public class SimpleBlockingQueue<T> {
     }
 
     public synchronized T poll() {
-        while (queue.size() == 0) {
+        while (queue.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException i) {
