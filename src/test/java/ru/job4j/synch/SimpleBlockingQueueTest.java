@@ -10,10 +10,20 @@ public class SimpleBlockingQueueTest {
     @Test
     public void whenProducerTwoAddAndConsumerOnePoll() throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
-        Thread consumer = new Thread(queue::poll);
+        Thread consumer = new Thread(() -> {
+            try {
+                queue.poll();
+            } catch (InterruptedException i) {
+                i.printStackTrace();
+            }
+        });
         Thread producer = new Thread(() -> {
-            queue.offer(1);
-            queue.offer(2);
+            try {
+                queue.offer(1);
+                queue.offer(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
         consumer.start();
         producer.start();
@@ -25,11 +35,21 @@ public class SimpleBlockingQueueTest {
     @Test
     public void whenQueueOfTwoElementsUseLimit() throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(2);
-        Thread consumer = new Thread(queue::poll);
+        Thread consumer = new Thread(() -> {
+            try {
+                queue.poll();
+            } catch (InterruptedException i) {
+                i.printStackTrace();
+            }
+        });
         Thread producer = new Thread(() -> {
-            queue.offer(1);
-            queue.offer(2);
-            queue.offer(3);
+            try {
+                queue.offer(1);
+                queue.offer(2);
+                queue.offer(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
         producer.start();
         consumer.start();
