@@ -10,9 +10,10 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
-    private int limit = 5;
+    private final int limit;
 
     public SimpleBlockingQueue() {
+        limit = Integer.MAX_VALUE;
     }
 
     public SimpleBlockingQueue(int limit) {
@@ -31,8 +32,9 @@ public class SimpleBlockingQueue<T> {
         while (queue.isEmpty()) {
                 wait();
         }
+        T value = queue.poll();
         notify();
-        return queue.poll();
+        return value;
     }
 
     public synchronized boolean isEmpty() {
