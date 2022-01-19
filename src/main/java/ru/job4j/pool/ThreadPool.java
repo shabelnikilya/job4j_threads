@@ -11,7 +11,8 @@ public class ThreadPool {
     private final List<Thread> threads = new ArrayList<>();
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>();
 
-    public ThreadPool(int size) {
+    public ThreadPool() {
+        int size = Runtime.getRuntime().availableProcessors();
         for (int i = 0; i < size; i++) {
             Thread thread = new Thread(() -> {
                 try {
@@ -34,14 +35,5 @@ public class ThreadPool {
 
     public void shutdown() {
         threads.forEach(Thread::interrupt);
-        for (Thread th : threads) {
-            if (th.isAlive()) {
-                try {
-                    th.join();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
     }
 }
