@@ -1,7 +1,6 @@
 package ru.job4j.pool;
 
 public class User {
-
     private final String username;
     private final String email;
 
