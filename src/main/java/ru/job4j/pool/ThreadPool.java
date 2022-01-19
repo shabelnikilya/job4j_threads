@@ -8,6 +8,7 @@ import java.util.List;
 
 @ThreadSafe
 public class ThreadPool {
+
     private final List<Thread> threads;
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>();
 
