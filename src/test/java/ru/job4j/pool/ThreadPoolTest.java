@@ -5,7 +5,6 @@ import ru.job4j.concurrent.Count;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -21,7 +20,6 @@ public class ThreadPoolTest {
         pool.work(count::increment);
         pool.work(count::increment);
         pool.shutdown();
-        TimeUnit.MILLISECONDS.sleep(300);
         assertThat(count.get(), is(3));
     }
 
@@ -31,7 +29,6 @@ public class ThreadPoolTest {
         ThreadPool pool = new ThreadPool(size);
         pool.work(() -> str.add("test"));
         pool.shutdown();
-        TimeUnit.MILLISECONDS.sleep(300);
         assertThat(str.get(0), is("test"));
     }
 }
