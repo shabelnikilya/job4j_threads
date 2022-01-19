@@ -10,36 +10,51 @@ public class ParallelSearchObjTest {
 
     @Test
     public void whenFindIntegerObject() {
-        ParallelSearchObj<Integer> searchObj = new ParallelSearchObj<>(
-                array, 12, 0, array.length - 1);
-        assertThat(searchObj.getIndexObject(), is(12));
+        assertThat(
+                ParallelSearchObj.getIndexObject(
+                    array,
+                    12,
+                    0,
+                    array.length - 1), is(12));
     }
 
     @Test
     public void whenNotFindIntegerObjectMinusOne() {
-        ParallelSearchObj<Integer> searchObj = new ParallelSearchObj<>(
-                array, 66, 0, array.length - 1);
-        assertThat(searchObj.getIndexObject(), is(-1));
+        assertThat(
+                ParallelSearchObj.getIndexObject(
+                        array,
+                        66,
+                        0,
+                        array.length - 1), is(-1));
     }
 
     @Test
     public void whenFindIntegerObjectInSmallPartArray() {
-        ParallelSearchObj<Integer> searchObj = new ParallelSearchObj<>(
-                array, 3, 0, 5);
-        assertThat(searchObj.getIndexObject(), is(1));
+        assertThat(
+                ParallelSearchObj.getIndexObject(
+                        array,
+                        3,
+                        0,
+                        5), is(1));
     }
 
     @Test
     public void whenFromEqualsToMinusOne() {
-        ParallelSearchObj<Integer> searchObj = new ParallelSearchObj<>(
-                array, 3, 0, 0);
-        assertThat(searchObj.getIndexObject(), is(-1));
+        assertThat(
+                ParallelSearchObj.getIndexObject(
+                        array,
+                        3,
+                        0,
+                        0), is(-1));
     }
 
     @Test
     public void whenFromEqualsToAndFindObject() {
-        ParallelSearchObj<Integer> searchObj = new ParallelSearchObj<>(
-                array, 1, 0, 0);
-        assertThat(searchObj.getIndexObject(), is(0));
+        assertThat(
+                ParallelSearchObj.getIndexObject(
+                        array,
+                        1,
+                        0,
+                        0), is(0));
     }
 }
