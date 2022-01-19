@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class EmailNotification {
+
     private final ExecutorService pool;
 
     public EmailNotification(ExecutorService pool) {
