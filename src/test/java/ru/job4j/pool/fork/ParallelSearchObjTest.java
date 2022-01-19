@@ -1,4 +1,4 @@
-package ru.job4j.pool.sortForkJoin;
+package ru.job4j.pool.fork;
 
 import org.junit.Test;
 
