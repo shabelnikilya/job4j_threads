@@ -10,6 +10,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ThreadPoolTest {
+
     private final int size = Runtime.getRuntime().availableProcessors();
 
     @Test
