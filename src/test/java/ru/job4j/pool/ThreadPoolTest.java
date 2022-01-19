@@ -10,11 +10,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ThreadPoolTest {
-
     private final int size = Runtime.getRuntime().availableProcessors();
 
     @Test
-    public void workAddThreeIncrement() {
+    public void workAddThreeIncrement() throws InterruptedException {
         Count count = new Count();
         ThreadPool pool = new ThreadPool(size);
         pool.work(count::increment);
@@ -25,7 +24,7 @@ public class ThreadPoolTest {
     }
 
     @Test
-    public void workAddValueToList() {
+    public void workAddValueToList() throws InterruptedException {
         List<String> str = new ArrayList<>();
         ThreadPool pool = new ThreadPool(size);
         pool.work(() -> str.add("test"));

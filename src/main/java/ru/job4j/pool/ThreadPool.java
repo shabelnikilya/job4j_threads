@@ -8,16 +8,10 @@ import java.util.List;
 
 @ThreadSafe
 public class ThreadPool {
-
-    private final List<Thread> threads;
+    private final List<Thread> threads = new ArrayList<>();
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>();
 
     public ThreadPool(int size) {
-        this.threads = createNewThreadsAddToListAndStart(size);
-    }
-
-    public List<Thread> createNewThreadsAddToListAndStart(int size) {
-        List<Thread> pool = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             Thread thread = new Thread(() -> {
                 try {
@@ -29,30 +23,16 @@ public class ThreadPool {
                 }
             }
             );
-            pool.add(thread);
+            threads.add(thread);
             thread.start();
         }
-        return pool;
     }
 
-    public void work(Runnable job) {
-        try {
+    public void work(Runnable job) throws InterruptedException {
             tasks.offer(job);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
     }
 
     public void shutdown() {
         threads.forEach(Thread::interrupt);
-        for (Thread th : threads) {
-            if (th.isAlive()) {
-                try {
-                    th.join();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
     }
 }
