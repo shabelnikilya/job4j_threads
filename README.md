@@ -5,7 +5,5 @@
 - Общие ресуры;
 - Синхронизация ресурсов;
 - Wait, Notify, NotifyAll;
-- Non Blocking Algorithm;
+- Non Blocking Algoritm;
 - Пулы.
-
-Объеденение зафиксированных изменений
