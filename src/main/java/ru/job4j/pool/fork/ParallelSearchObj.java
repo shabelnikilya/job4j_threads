@@ -38,7 +38,7 @@ public class ParallelSearchObj<V> extends RecursiveTask<Integer> {
         return -1;
     }
 
-    public static <V> int getIndexObject(V[] array, V findValue, int from, int to) {
-        return new ForkJoinPool().invoke(new ParallelSearchObj<>(array, findValue, from, to));
+    public static <V> int getIndexObject(V[] array, V findValue) {
+        return new ForkJoinPool().invoke(new ParallelSearchObj<>(array, findValue, 0, array.length - 1));
     }
 }
