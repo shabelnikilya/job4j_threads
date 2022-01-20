@@ -8,12 +8,4 @@ public final class Node<T> {
         this.next = next;
         this.value = value;
     }
-
-    public Node<T> getNext() {
-        return next;
-    }
-
-    public T getValue() {
-        return value;
-    }
 }
