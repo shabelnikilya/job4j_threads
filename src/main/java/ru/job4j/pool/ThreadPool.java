@@ -35,5 +35,14 @@ public class ThreadPool {
 
     public void shutdown() {
         threads.forEach(Thread::interrupt);
+        for (Thread th : threads) {
+            if (th.isAlive()) {
+                try {
+                    th.join();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
     }
 }
