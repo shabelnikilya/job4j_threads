@@ -7,3 +7,4 @@
 - Wait, Notify, NotifyAll;
 - Non Blocking Algoritm;
 - Пулы.
+Работа с веткой hotfix.
