@@ -5,7 +5,7 @@
 - Общие ресуры;
 - Синхронизация ресурсов;
 - Wait, Notify, NotifyAll;
-- Non Blocking Algoritm;
+- Non Blocking Algorithm;
 - Пулы.
 
 В курсе производилась работа в ветках git.
