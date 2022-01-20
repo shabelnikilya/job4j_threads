@@ -8,6 +8,3 @@
 - Wait, Notify, NotifyAll;
 - Non Blocking Algorithm;
 - Пулы.
-
-В курсе производилась работа в ветках git.
-Создание ветки из IDEA.
