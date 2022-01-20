@@ -6,7 +6,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ParallelSearchObjTest {
-
     @Test
     public void whenFindIntegerObject() {
         final Integer[] array = {1, 3, 5, 7, 9, 11, 13, 2, 4, 6, 8, 10, 12};
